@@ -70,7 +70,7 @@ if (isset($_SESSION['user_id'])) {
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Agrega nuevo curso</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Agrega nuevo cliente</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -88,7 +88,7 @@ if (isset($_SESSION['user_id'])) {
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputGrupo4">Telefono</label>
-                                            <input type="number" class="form-control input-sm" id="telefono" name="telefono" required="">
+                                            <input type="number" class="form-control input-sm" id="telefono" name="telefono" required="" min="0">
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -120,7 +120,7 @@ if (isset($_SESSION['user_id'])) {
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label for="inputHorario4">No. Pantalla</label>
-                                            <select class="form-control input-sm" name="No_pantalla" id="No_pantalla">
+                                            <select class="form-control input-sm" name="no_pantalla" id="no_pantalla">
                                                 <option value="" selected="" disabled="">Seleccione...</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -133,7 +133,7 @@ if (isset($_SESSION['user_id'])) {
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label for="inputIntensidad4">Valor Servicio</label>
-                                            <input type="number" class="form-control input-sm" id="vlr_servicio" name="vlr_servicio" required="">
+                                            <input type="number" class="form-control input-sm" id="vlr_servicio" name="vlr_servicio" required="" min="0">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputIntensidad4">Correo cuenta</label>
@@ -153,7 +153,7 @@ if (isset($_SESSION['user_id'])) {
                                             <label for="inputFecha4">Fecha Pago</label>
                                             <input type="date" class="form-control input-sm" name="fecha_pago"  id="fecha_pago" required="">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label for="inputFecha4">Pagado</label>
                                             <select class="form-control input-sm" name="pagado" id="pagado">
                                                 <option value="" selected="" disabled="">Seleccione...</option>
@@ -161,12 +161,20 @@ if (isset($_SESSION['user_id'])) {
                                                 <option value="1">PAGÓ</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label for="inputFecha4">Estado</label>
                                             <select class="form-control input-sm" name="estado" id="estado">
                                                 <option value="" selected="" disabled="">Seleccione...</option>
                                                 <option value="0">INACTIVO</option>
                                                 <option value="1">ACTIVO</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputFecha4">Responsable</label>
+                                            <select class="form-control input-sm" name="responsable" id="responsable">
+                                                <option value="" selected="" disabled="">Seleccione...</option>
+                                                <option value="Lorenzo Y">Lorenzo Y</option>
+                                                <option value="Liborio C">Liborio C</option>
                                             </select>
                                         </div>
                                     </div>
@@ -208,7 +216,7 @@ if (isset($_SESSION['user_id'])) {
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-2">
                                             <label for="inputJornada4">Servicio</label>
                                             <input type="text" class="form-control input-sm" id="servicioU" name="servicioU" required="">
                                         </div>
@@ -219,6 +227,10 @@ if (isset($_SESSION['user_id'])) {
                                         <div class="form-group col-md-2">
                                             <label for="inputIntensidad4">Valor Servicio</label>
                                             <input type="text" class="form-control input-sm" id="vlr_servicioU" name="vlr_servicioU" required="">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputHorario4">No Pantalla</label>
+                                            <input type="text" class="form-control input-sm" id="no_pantallaU" name="no_pantallaU" required="">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputIntensidad4">Correo cuenta</label>
@@ -238,13 +250,17 @@ if (isset($_SESSION['user_id'])) {
                                             <label for="inputFecha4">Fecha Pago</label>
                                             <input type="date" class="form-control input-sm" name="fecha_pagoU"  id="fecha_pagoU" required="">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label for="inputFecha4">Pagado</label>
                                             <input type="text" class="form-control input-sm" id="pagadoU" name="pagadoU" required="">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label for="inputFecha4">Estado</label>
                                             <input type="text" class="form-control input-sm" id="estadoU" name="estadoU" required="">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputFecha4">Responsable</label>
+                                            <input type="text" class="form-control input-sm" id="responsableU" name="responsableU" required="">
                                         </div>
                                     </div>
                                 </form>
@@ -400,6 +416,8 @@ if (isset($_SESSION['user_id'])) {
 				$('#fecha_pagoU').val(datos['fecha_pago']);
 				$('#pagadoU').val(datos['pagado']);
 				$('#estadoU').val(datos['estado']);
+				$('#responsableU').val(datos['responsable']);
+				$('#no_pantallaU').val(datos['no_pantalla']);
 			}
 		});
 	}

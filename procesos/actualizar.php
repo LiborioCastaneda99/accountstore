@@ -16,7 +16,9 @@
 		$_POST['fecha_finU'],
 		$_POST['fecha_pagoU'],
 		$_POST['pagadoU'],
-		$_POST['estadoU']
+		$_POST['estadoU'],
+		$_POST['responsableU'],
+		$_POST['no_pantallaU']
 	);
 
 

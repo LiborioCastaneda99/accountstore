@@ -21,7 +21,7 @@ if (isset($_SESSION['user_id'])) {
 }
 
 $tildes = $conexion->query("SET NAMES 'utf8'");
-$sql="SELECT id, nombres, correo, telefono, servicio, pantalla, vlr_servicio, correo_cuenta, fecha_inicio, fecha_fin, fecha_pago, CASE WHEN pagado = 1 THEN 'SI' WHEN pagado = 0 THEN 'No' END As pagado, CASE WHEN estado = 1 THEN 'Activo' WHEN estado = 0 THEN 'Inactivo' END As estado, fecha_registro FROM clientes WHERE estado = 1";
+$sql="SELECT id, nombres, correo, telefono, servicio, pantalla, vlr_servicio, correo_cuenta, fecha_inicio, fecha_fin, fecha_pago, CASE WHEN pagado = 1 THEN 'SI' WHEN pagado = 0 THEN 'No' END As pagado, CASE WHEN estado = 1 THEN 'Activo' WHEN estado = 0 THEN 'Inactivo' END As estado, fecha_registro, no_pantalla, responsable FROM clientes WHERE estado = 1";
 $result=mysqli_query($conexion,$sql);
 
 ?>
@@ -37,6 +37,7 @@ $result=mysqli_query($conexion,$sql);
 					<td>Telefono</td>
 					<td>Servicio</td>
 					<td>Pantalla</td>
+					<td>No. Pantalla</td>
 					<td>Valor servicio</td>
 					<td>Correo cuenta</td>
 					<td>Fecha Inicio</td>
@@ -44,6 +45,7 @@ $result=mysqli_query($conexion,$sql);
 					<td>Fecha Pago</td>
 					<td>Pagó</td>
 					<td>Estado</td>
+					<td>Responsable</td>
 					<td width="20%">Acciones</td>
 				</tr>
 			</thead>
@@ -58,6 +60,7 @@ $result=mysqli_query($conexion,$sql);
 							<td><?php echo strtoupper($mostrar[3]); ?></td>
 							<td><?php echo strtoupper($mostrar[4]); ?></td>
 							<td><?php echo strtoupper($mostrar[5]); ?></td>
+							<td><?php echo strtoupper($mostrar[14]); ?></td>
 							<td><?php echo strtoupper($mostrar[6]); ?></td>
 							<td><?php echo strtoupper($mostrar[7]); ?></td>
 							<td><?php echo strtoupper($mostrar[8]); ?></td>
@@ -65,6 +68,7 @@ $result=mysqli_query($conexion,$sql);
 							<td><?php echo strtoupper($mostrar[10]); ?></td>
 							<td><?php echo strtoupper($mostrar[11]); ?></td>
 							<td><?php echo strtoupper($mostrar[12]); ?></td>
+							<td><?php echo strtoupper($mostrar[15]); ?></td>
 							<td style="text-align: center;" >
 								<span class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#modalEditar" onclick="agregaFrmActualizar('<?php echo $mostrar[0] ?>')">
 									<span class="fa fa-pencil-square-o"></span>

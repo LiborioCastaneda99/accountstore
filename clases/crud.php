@@ -117,7 +117,7 @@
 			$obj =  new conectar();
 			$conexion = $obj->conexion();
 			$tildes = $conexion->query("SET NAMES 'utf8'");
-			$sql = "SELECT id, nombres, correo, telefono, servicio, pantalla, vlr_servicio, correo_cuenta, fecha_inicio, fecha_fin, fecha_pago, pagado, estado, fecha_registro 
+			$sql = "SELECT id, nombres, correo, telefono, servicio, pantalla, vlr_servicio, correo_cuenta, fecha_inicio, fecha_fin, fecha_pago, pagado, estado, fecha_registro, responsable, no_pantalla 
 			FROM clientes WHERE id = '$id'";
 			$result = mysqli_query($conexion,$sql);
 			$ver = mysqli_fetch_row($result);
@@ -135,7 +135,9 @@
 				'fecha_fin' => $ver[9],
 				'fecha_pago' => $ver[10],
 				'pagado' => $ver[11],
-				'estado' => $ver[12]
+				'estado' => $ver[12],
+				'responsable' => $ver[14],
+				'no_pantalla' => $ver[15]
 			);
 			return $datos;
 		}
@@ -180,7 +182,7 @@
 			
 			$sql="UPDATE clientes SET nombres='$datos[1]',correo='$datos[2]',telefono='$datos[3]',servicio='$datos[4]',
 			pantalla='$datos[5]',vlr_servicio='$datos[6]',correo_cuenta='$datos[7]',fecha_inicio='$datos[8]',fecha_fin='$datos[9]',
-			fecha_pago='$datos[10]',pagado='$datos[11]',estado='$datos[12]' WHERE id=$datos[0]";
+			fecha_pago='$datos[10]',pagado='$datos[11]',estado='$datos[12]',responsable='$datos[13]', no_pantalla='$datos[14]' WHERE id=$datos[0]";
 			return mysqli_query($conexion,$sql);
 		}
 
@@ -202,19 +204,8 @@
 			$conexion=$obj->conexion();
 			$tildes = $conexion->query("SET NAMES 'utf8'");
 	
-			$sql="INSERT INTO clientes (nombres, correo, telefono, servicio, pantalla, vlr_servicio, correo_cuenta, fecha_inicio, fecha_fin, fecha_pago, pagado, estado) 
-			VALUES ('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]','$datos[6]','$datos[7]','$datos[8]','$datos[9]','$datos[10]','$datos[11]')";
-			return mysqli_query($conexion,$sql);
-		}
-
-		public function guardarAprendizC($datos){
-
-			$obj= new conectar();
-			$conexion=$obj->conexion();
-			$tildes = $conexion->query("SET NAMES 'utf8'");
-		
-			$sql="INSERT INTO competencias (nombres, apellidos, sexo, correo, tipodocumento, documento, fechaNacimiento, municipio, telefono, poblacion, ocupacion) 
-			VALUES ('$datos[0]','$datos[1]','$datos[2]','$datos[4]','$datos[5]','$datos[6]','$datos[3]','$datos[8]','$datos[7]','$datos[9]','$datos[10]')";
+			$sql="INSERT INTO clientes (nombres, correo, telefono, servicio, pantalla, no_pantalla, vlr_servicio, correo_cuenta, fecha_inicio, fecha_fin, fecha_pago, pagado, estado, responsable) 
+			VALUES ('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[12]','$datos[5]','$datos[6]','$datos[7]','$datos[8]','$datos[9]','$datos[10]','$datos[11]','$datos[13]')";
 			return mysqli_query($conexion,$sql);
 		}
 
