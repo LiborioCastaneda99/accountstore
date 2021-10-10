@@ -209,6 +209,17 @@
 			return mysqli_query($conexion,$sql);
 		}
 
+		public function guardarClienteNuevo($datos){
+
+			$obj= new conectar();
+			$conexion=$obj->conexion();
+			$tildes = $conexion->query("SET NAMES 'utf8'");
+	
+			$sql="INSERT INTO clientes_nuevos(nombre, documento, telefono, correo, servicio, perfiles, constacia_pago) 
+			VALUES ('$datos[2]','$datos[1]','$datos[4]','$datos[3]','$datos[0]','$datos[5]','$datos[6]')";
+			return mysqli_query($conexion,$sql);
+		}
+
 		public function actualizarPerfil($datos){
 			$obj= new conectar();
 			$conexion=$obj->conexion();

@@ -17,6 +17,8 @@ if (isset($_SESSION['user_id'])) {
     $user = $res_login;
   }
 }
+$nombre_carpeta = "no_principal";
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -182,7 +184,7 @@ if (isset($_SESSION['user_id'])) {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
-                                <button type="button" id="btnAgregarnuevo" class="btn btn-outline-secondary">Agregar nuevo</button>
+                                <button type="button" id="btnAgregarnuevo" class="btn btn-outline-primary">Agregar nuevo</button>
                             </div>
                         </div>
                     </div>
@@ -267,7 +269,7 @@ if (isset($_SESSION['user_id'])) {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-outline-secondary" id="btnActualizar">Actualizar</button>
+                                <button type="button" class="btn btn-outline-primary" id="btnActualizar">Actualizar</button>
                             </div>
                         </div>
                     </div>

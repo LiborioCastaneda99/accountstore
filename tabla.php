@@ -32,21 +32,21 @@ $result=mysqli_query($conexion,$sql);
 		<table class="table table-hover small" id="cargarClientes">
 			<thead class="text-center bg-primary">
 				<tr>
-					<td>Nombres</td>
-					<td>Correo cliente</td>
-					<td>Telefono</td>
-					<td>Servicio</td>
-					<td>Pantalla</td>
-					<td>No. Pantalla</td>
-					<td>Valor servicio</td>
-					<td>Correo cuenta</td>
-					<td>Fecha Inicio</td>
-					<td>Fecha Fin</td>
-					<td>Fecha Pago</td>
-					<td>Pagó</td>
-					<td>Estado</td>
-					<td>Responsable</td>
-					<td width="20%">Acciones</td>
+					<td style="color:#fff; font-size:14px;">Nombres</td>
+					<td style="color:#fff; font-size:14px;">Correo cliente</td>
+					<td style="color:#fff; font-size:14px;">Telefono</td>
+					<td style="color:#fff; font-size:14px;">Servicio</td>
+					<td style="color:#fff; font-size:14px;">Pantalla</td>
+					<td style="color:#fff; font-size:14px;">No. Pantalla</td>
+					<td style="color:#fff; font-size:14px;">Valor servicio</td>
+					<td style="color:#fff; font-size:14px;">Correo cuenta</td>
+					<td style="color:#fff; font-size:14px;">Fecha Inicio</td>
+					<td style="color:#fff; font-size:14px;">Fecha Fin</td>
+					<td style="color:#fff; font-size:14px;">Fecha Pago</td>
+					<td style="color:#fff; font-size:14px;">Pagó</td>
+					<td style="color:#fff; font-size:14px;">Estado</td>
+					<td style="color:#fff; font-size:14px;">Responsable</td>
+					<td width="20%" style="color:#fff; font-size:14px;">Acciones</td>
 				</tr>
 			</thead>
 			

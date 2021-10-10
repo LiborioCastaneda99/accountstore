@@ -17,6 +17,7 @@ if (isset($_SESSION['user_id'])) {
     $user = $res_login;
   }
 }
+$nombre_carpeta = "no_principal";
 ?>
 <!doctype html>
 <html lang="es">
@@ -50,28 +51,15 @@ if (isset($_SESSION['user_id'])) {
 
                 <!-- servicios -->
                 <h3 class="text-center">Administrador</h3>
-                <div class="row mt-3 col-md-6 mx-auto">
-                    <div class="col-md-6">
+                <div class="row mt-3 col-md-3 mx-auto">
+                    <div class="col-md-12">
                         <div class="card mb-6 shadow-sm">
-                            <img class="bd-placeholder-img card-img-top" src="https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c529.png"  width="100%" height="210" alt="">
+                            <img class="bd-placeholder-img card-img-top" src="img/logo_user.png"  width="100%" alt="">
                             <div class="card-body"><hr>
                             <p class="card-text text-center">Administrar clientes</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group mx-auto">
-                                    <a class="btn btn-sm btn-outline-secondary"  href="clientes.php">Ir</a>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card mb-6 shadow-sm">
-                            <img class="bd-placeholder-img card-img-top" src="https://spng.pngfind.com/pngs/s/394-3944103_amazon-prime-video-logo-png-transparent-png.png"  width="100%" height="210" alt="">
-                            <div class="card-body"><hr>
-                            <p class="card-text text-center">Modificar cliente</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group mx-auto">
-                                <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#staticBackdrop">Ver planes</button>
+                                    <a class="btn btn-sm btn-block btn-outline-primary"  href="clientes.php">Ir</a>
                                 </div>
                             </div>
                             </div>

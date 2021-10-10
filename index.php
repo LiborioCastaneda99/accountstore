@@ -17,6 +17,11 @@ if (isset($_SESSION['user_id'])) {
     $user = $res_login;
   }
 }
+
+$tildes = $conexion->query("SET NAMES 'utf8'");
+$sql_servicios="SELECT `id`, `nombre`, `img`, `fechaRegistro`, img_precios FROM `servicios`";
+$res_servicios = mysqli_query($conexion,$sql_servicios);
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -80,64 +85,27 @@ if (isset($_SESSION['user_id'])) {
 
 			<!-- servicios -->
 			<hr>
-			<h3 class="text-center">Nuestros servicios</h3>
+			<h3 id="servicios" class="text-center">Nuestros servicios</h3>
 			<div class="row">
-				<div class="col-md-3">
-					<div class="card mb-3 shadow-sm">
-						<img class="bd-placeholder-img card-img-top" src="https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c529.png"  width="100%" height="210" alt="">
-						<div class="card-body"><hr>
-						<p class="card-text">This is a wider card with. This content is a little bit longer.</p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group mx-auto">
-							<button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#staticBackdrop">Ver planes</button>
+				<?php
+					foreach ($res_servicios as $s) { 
+						?>
+							<div class="col-md-3">
+								<div class="card mb-3 shadow-sm">
+									<img class="bd-placeholder-img card-img-top" src="img/<?= $s['img']?>"  width="100%" alt="">
+									<div class="card-body"><hr>
+									<p class="card-text text-center"><?= $s['nombre']?></p>
+									<div class="d-flex justify-content-between align-items-center">
+										<div class="btn-group mx-auto">
+										<button type="button" class="btn btn-sm btn-outline-primary datos" data-text="<?php echo htmlentities($s['nombre']); ?>" data-descr="<?php echo htmlentities($s['img_precios']); ?>" data-toggle="modal" data-target="#staticBackdrop">Ver planes</button>
+										</div>
+									</div>
+									</div>
+								</div>
 							</div>
-							<small class="text-muted">9 mins</small>
-						</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="card mb-3 shadow-sm">
-						<img class="bd-placeholder-img card-img-top" src="https://spng.pngfind.com/pngs/s/394-3944103_amazon-prime-video-logo-png-transparent-png.png"  width="100%" height="210" alt="">
-						<div class="card-body"><hr>
-						<p class="card-text">This is a wider card with. This content is a little bit longer.</p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group mx-auto">
-							<button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#staticBackdrop">Ver planes</button>
-							</div>
-							<small class="text-muted">9 mins</small>
-						</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="card mb-3 shadow-sm">
-						<img class="bd-placeholder-img card-img-top" src="https://1000marcas.net/wp-content/uploads/2021/04/Disney-Plus-logo.jpg"  width="100%" height="210" alt="">
-						<div class="card-body"><hr>
-						<p class="card-text">This is a wider card with. This content is a little bit longer.</p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group mx-auto">
-							<button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#staticBackdrop">Ver planes</button>
-							</div>
-							<small class="text-muted">9 mins</small>
-						</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="card mb-3 shadow-sm">
-						<img class="bd-placeholder-img card-img-top" src="https://1000marcas.net/wp-content/uploads/2021/04/Disney-Plus-logo.jpg"  width="100%" height="210" alt="">
-						<div class="card-body"><hr>
-						<p class="card-text">This is a wider card with. This content is a little bit longer.</p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group mx-auto">
-							<button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#staticBackdrop">Ver planes</button>
-							</div>
-							<small class="text-muted">9 mins</small>
-						</div>
-						</div>
-					</div>
-				</div>
+						<?php
+					}
+				?>
 			</div>
 
 		</div>
@@ -150,32 +118,121 @@ if (isset($_SESSION['user_id'])) {
 					<div class="modal-header">
 						<h5 class="modal-title" id="staticBackdropLabel">Nuestros planes</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
+							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
-						...
+						<img class="bd-placeholder-img card-img-top" src="" id="img_flayers" name="img_flayers" width="100%" alt="">
+						<hr>
+						<form id="frmDatosCuenta" enctype="multipart/form-data" >
+							<div class="row">
+								<input type="hidden" class="form-control input-sm" name="nombreProducto" id="nombreProducto">
+								<div class="form-group mx-auto col-md-4">
+									<label for="inputPantalla">Documento</label>
+									<input type="number" min="0" class="form-control input-sm" name="documento" id="documento">
+								</div>
+								<div class="form-group mx-auto col-md-8">
+									<label for="inputPantalla">Nombres</label>
+									<input type="text" class="form-control input-sm" name="nombres" id="nombres">
+								
+								</div>
+								<div class="form-group mx-auto col-md-7">
+									<label for="inputPantalla">Correo</label>
+									<input type="text" class="form-control input-sm" name="correo" id="correo">
+								</div>
+								<div class="form-group mx-auto col-md-5">
+									<label for="inputPantalla">Numero WhatsApp</label>
+									<input type="number" min="0" class="form-control input-sm" name="telefono" id="telefono">
+								</div>
+								<div class="form-group mx-auto col-md-4">
+									<label for="inputPantalla">Cantidad de perfiles</label>
+									<select class="form-control input-sm" name="perfiles" id="perfiles">
+										<option value="" selected="" disabled="">Seleccione...</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+									</select>
+								</div>
+								<div class="form-group mx-auto col-md-8">
+									<label for="inputPantalla">Constancia de pago</label>
+									<input type="file" class="form-control input-sm" name="file" id="file">
+								</div>
+								<div class="form-group mx-auto col-md-12">
+									<button type="submit" name="submit" class="btn btn-outline-primary btn-sm btn-block" id="bntComprar">Comprar</button>
+								</div>
+							</div>
+						</form>
+						
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
-						<!-- <button type="button" class="btn btn-outline-primary">Understood</button> -->
 					</div>
 				</div>
 			</div>
 		</div>
 
-
-
-		<!-- Optional JavaScript; choose one of the two! -->
-
-		<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-		<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> -->
-
-		<!-- Option 2: jQuery, Popper.js, and Bootstrap JS
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-		-->
   </body>
 </html>
+<script>
+    $(document).on('click', '.datos', function () {
+
+        var descr = $(this).attr('data-descr');
+        var text = $(this).attr('data-text');
+        $('#staticBackdrop #img_flayers').attr("src", 'img/'+descr);
+		$('#staticBackdrop input[name=nombreProducto]').val(text);
+    
+	});
+
+	$(document).ready(function(e){
+		$("#frmDatosCuenta").on('submit', function(e){
+			e.preventDefault();
+		
+			var nombreProducto = document.getElementsByName("nombreProducto")[0].value;
+			var documento = document.getElementsByName("documento")[0].value;
+			var nombres = document.getElementsByName("nombres")[0].value;
+			var correo = document.getElementsByName("correo")[0].value;
+			var telefono = document.getElementsByName("telefono")[0].value;
+			var perfiles = document.getElementsByName("perfiles")[0].value;
+
+			if ((nombreProducto == "")|| (documento == "")|| (nombres == "")|| (correo == "")|| (telefono == "")|| (perfiles == "")) { 
+				Swal.fire({
+				icon: 'error',
+				text: 'Por favor revisar, hay campos vacidos.',
+				showConfirmButton: false,
+				timer: 1500
+				})
+			}else{
+				$.ajax({
+				type: 'POST',
+				url: 'procesos/guardarClienteNuevo.php',
+				data: new FormData(this),
+				contentType: false,
+				cache: false,
+				processData:false,
+					success:function(r){
+						if(r==1){
+							$('#staticBackdrop').modal('toggle');
+							$('#frmDatosCuenta')[0].reset();
+							Swal.fire(
+							'Correcto!',
+							'Se ha enviado correctamente, en menos de 5min será enviada su cuenta, una vez el team verifique su pago!',
+							'success'
+							);
+						}else{
+							Swal.fire(
+							'Error!',
+							'No se ha podido enviar sus datos correctamente!',
+							'error'
+							);
+						}
+					}
+				});
+			}
+		});
+	});
+
+</script>
