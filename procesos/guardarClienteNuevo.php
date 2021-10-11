@@ -3,6 +3,10 @@
 	require_once "../clases/crud.php";
 	$obj= new crud();
 
+    $obj_= new conectar();
+    $conexion=$obj_->conexion();
+    $tildes = $conexion->query("SET NAMES 'utf8'");
+
     $uploadedFile = '';
     if(!empty($_FILES["file"]["type"])){
         $fileName = time().'_'.$_FILES['file']['name'];

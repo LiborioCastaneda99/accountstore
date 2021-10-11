@@ -1,24 +1,8 @@
 
 <?php 
-session_start();
-
 require_once "clases/conexion.php";
 $obj= new conectar();
 $conexion=$obj->conexion();
-
-if (isset($_SESSION['user_id'])) {
-	$id = $_SESSION['user_id'];
-	$tildes = $conexion->query("SET NAMES 'utf8'");
-	$sql="SELECT id, nombres, apellidos, tipodocumento, documento, tipoPoblacion, email, password, 
-	fechaRegistro, rol, fecha_sesion, telefono, fechaNacimiento, municipio, sexo, img, centro 
-	FROM users WHERE id = $id";
-	$result_login = mysqli_fetch_row(mysqli_query($conexion,$sql));
-	$user = null;
-  
-	if (count($result_login) > 0) {
-	  $user = $result_login;
-	}
-}
 
 $tildes = $conexion->query("SET NAMES 'utf8'");
 $sql="SELECT id, nombres, correo, telefono, servicio, pantalla, vlr_servicio, correo_cuenta, fecha_inicio, fecha_fin, fecha_pago, CASE WHEN pagado = 1 THEN 'SI' WHEN pagado = 0 THEN 'No' END As pagado, CASE WHEN estado = 1 THEN 'Activo' WHEN estado = 0 THEN 'Inactivo' END As estado, fecha_registro, no_pantalla, responsable FROM clientes WHERE estado = 1";

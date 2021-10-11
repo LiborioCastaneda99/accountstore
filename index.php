@@ -40,6 +40,9 @@ $res_servicios = mysqli_query($conexion,$sql_servicios);
 			body{
 				font-family: 'Gemunu Libre', sans-serif;
 			}
+			li{
+				list-style: none;
+			}
 		</style>
 
 		<title>Inicio | AccountStoreTv</title>
@@ -83,10 +86,71 @@ $res_servicios = mysqli_query($conexion,$sql_servicios);
 				</a>
 			</div>
 
+			<!-- pasos -->
+			<hr>
+			<h3 id="pasos" class="text-center">¿Cómo adquirir un servicio?</h3>
+			<div class="row text-center mt-3">
+				<div class="col-sm-4 mb-3">
+					<div class="card  border-danger btn-outline-danger" style="transition: .3s linear;">
+						<div class="card-body">
+							<h5 class="card-title font-italic" style="font-size:60px;">1</h5>
+							<h5>Escoger tipo de cuenta.</h5>
+							<p class="" style="font-size:16px;">Se debe escoger el tipo de cuenta que deseas adquirir, ¿Full, Pantalla, Disney + o Amazon Prime Video?.</p>
+						</div>
+					</div>
+				</div> 
+				<div class="col-sm-4 mb-3">
+					<div class="card  border-danger btn-outline-danger" style="transition: .3s linear;">
+						<div class="card-body">
+							<h5 class="card-title font-italic" style="font-size:60px;">2</h5>
+							<h5>Pagar la suscripción.</h5>
+							<p class="" style="font-size:16px;">Una vez elijas el tipo de servicio, debes realizar el pago para la suscripción mensual y subirlo en el seguiente paso.</p>
+						</div>
+					</div>
+				</div> 
+				<div class="col-sm-4 mb-3">
+					<div class="card  border-danger btn-outline-danger" style="transition: .3s linear;">
+						<div class="card-body">
+							<h5 class="card-title font-italic" style="font-size:60px;">3</h5>
+							<h5>Registrar datos.</h5>
+							<p class="" style="font-size:16px;">Luego de realizar el pago, inmediatamente le mostrará un formulario para ingresar los datos solicitados.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 mb-3">
+					<div class="card  border-danger btn-outline-danger" style="transition: .3s linear;">
+						<div class="card-body">
+							<h5 class="card-title font-italic" style="font-size:60px;">4</h5>
+							<h5>Validación de datos.</h5>
+							<p class="" style="font-size:16px;">El sistema y nuestro equipo validarán los datos ingresados en caso de haber un fallo se colocarán en contacto con el usted.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 mb-3">
+					<div class="card  border-danger btn-outline-danger" style="transition: .3s linear;">
+						<div class="card-body">
+							<h5 class="card-title font-italic" style="font-size:60px;">5</h5>
+							<h5>¡Listo!</h5>
+							<p class="" style="font-size:16px;">Luego de cumplir estos sencillos pasos, le llegará un Mensaje a tu WhatsApp o un correo a tu email con los datos de acceso a tu cuenta.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 mb-3">
+					<div class="card  border-danger btn-outline-danger" style="transition: .3s linear;">
+						<div class="card-body">
+							<h5 class="card-title font-italic" style="font-size:60px;"><i class="fa fa-clock-o" aria-hidden="true"></i></h5>
+							<h5>Duración del proceso.</h5>
+							<p class="" style="font-size:16px;">Todo este procedimiento, no tardará mas de 10 minutos, en caso de cualquier inquietud dejenos un mensaje, aprovecha y adquiere tu suscripción.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 			<!-- servicios -->
 			<hr>
 			<h3 id="servicios" class="text-center">Nuestros servicios</h3>
-			<div class="row">
+			<center><button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#staticBackdrop_">Ver metodos de pagos</button></center>
+			<div class="row mt-3">
 				<?php
 					foreach ($res_servicios as $s) { 
 						?>
@@ -123,6 +187,7 @@ $res_servicios = mysqli_query($conexion,$sql_servicios);
 					</div>
 					<div class="modal-body">
 						<img class="bd-placeholder-img card-img-top" src="" id="img_flayers" name="img_flayers" width="100%" alt="">
+						<p class="font-italic text-center"><b>Nota:</b> Los datos a suministrar deben ser correctos para poder comunicarnos contigo una vez este activa la cuenta.</p>
 						<hr>
 						<form id="frmDatosCuenta" enctype="multipart/form-data" >
 							<div class="row">
@@ -158,7 +223,7 @@ $res_servicios = mysqli_query($conexion,$sql_servicios);
 									</select>
 								</div>
 								<div class="form-group mx-auto col-md-8">
-									<label for="inputPantalla">Constancia de pago</label>
+									<label for="inputPantalla">Comprobante de pago</label>
 									<input type="file" class="form-control input-sm" name="file" id="file">
 								</div>
 								<div class="form-group mx-auto col-md-12">
@@ -167,6 +232,39 @@ $res_servicios = mysqli_query($conexion,$sql_servicios);
 							</div>
 						</form>
 						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- modal de servicios -->
+		<div class="modal fade" id="staticBackdrop_" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="staticBackdropLabel">Metodos de pagos</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						
+					<div class="">
+						<p class="card-text font-italic">Es importante tener en cuenta que antes de registrar los datos, debes escojer el metodo de pago por el cual deseas comprar tu suscripción.</p> 
+						<ul>
+							<li>❇️ <strong>Efecty o cualquier otro punto fijo</strong><br> Liborio Castañeda  - Cc 1045173046<br> Lorenzo Yanet  - Cc 1140902526<br> <em>(costo del envío por separado)</em></li><br>
+							<li>❇️ <strong>Nequi:</strong> 3045985632 - 3043355645</li><br>
+							<li>❇️ <strong>Daviplata:</strong>  3045985632 - 3043355645</li><br>
+							<li>❇️ <strong>Cuenta de ahorros Bancolombia:</strong>  77591585269 - 03135389204  <br><em>(Solo transferencias desde cuentas Bancolombia, por la página web de Bancolombia o por la app) </em>  ¡IMPORTANTE!</li><br>
+							<li>❇️ <strong>Cuenta de Ahorros Davivienda:</strong> 156000755074</li><br>
+							<li>❇️ <strong>Titular de las cuentas Bancarias:</strong><br>Liborio Castañeda - CC. 1045173046<br>Lorenzo Yanet - CC. 1140902526</li><br>
+						</ul>
+					</div>
+
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
@@ -197,8 +295,9 @@ $res_servicios = mysqli_query($conexion,$sql_servicios);
 			var correo = document.getElementsByName("correo")[0].value;
 			var telefono = document.getElementsByName("telefono")[0].value;
 			var perfiles = document.getElementsByName("perfiles")[0].value;
+			var file = document.getElementsByName("file")[0].value;
 
-			if ((nombreProducto == "")|| (documento == "")|| (nombres == "")|| (correo == "")|| (telefono == "")|| (perfiles == "")) { 
+			if ((nombreProducto == "")|| (documento == "")|| (nombres == "")|| (correo == "")|| (telefono == "")|| (perfiles == "")|| (file == "")) { 
 				Swal.fire({
 				icon: 'error',
 				text: 'Por favor revisar, hay campos vacidos.',
@@ -215,6 +314,14 @@ $res_servicios = mysqli_query($conexion,$sql_servicios);
 				processData:false,
 					success:function(r){
 						if(r==1){
+
+							$.ajax({
+								data: {"nombres" : nombres, "nombreProducto" : nombreProducto},
+								type: "POST",
+								dataType: "json",
+								url: 'procesos/ejecutarWhatsApp.php',
+							});
+
 							$('#staticBackdrop').modal('toggle');
 							$('#frmDatosCuenta')[0].reset();
 							Swal.fire(

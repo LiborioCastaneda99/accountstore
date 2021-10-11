@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION['user_id'])) {
-    header('Location: micuenta.php');
+    header('Location: cuenta.php');
 }
 
 ?><!doctype html>

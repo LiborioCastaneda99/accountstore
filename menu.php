@@ -7,14 +7,13 @@
             </a>
         </h5>
         <nav class="my-2 my-md-0 mr-md-3">
-        <?php if(!empty($user)):?>
-            <a class="p-2 text-dark" href="index.php#servicios">Servicios</a>
-        <?php else: ?>
-            <a class="p-2 text-dark" href="#servicios">Servicios</a>
-        <?php endif; ?>
-            <a class="p-2 text-dark" href="#">Enterprise</a>
-            <a class="p-2 text-dark" href="#">Support</a>
-            <a class="p-2 text-dark" href="#">Pricing</a>
+            <?php if(!empty($user)):?>
+                <a class="p-2 text-dark" href="index.php#pasos">¿Cómo adquirir un servicio?</a>
+                <a class="p-2 text-dark" href="index.php#servicios">Servicios</a>
+            <?php else: ?>
+                <a class="p-2 text-dark" href="#pasos">¿Cómo adquirir un servicio?</a>
+                <a class="p-2 text-dark" href="#servicios">Servicios</a>
+            <?php endif; ?>
         </nav>
         <?php if(!empty($user)):?>
             <a class="p-2 text-dark" href="cuenta.php"><?php echo strtoupper($user[1]." ".$user[2]); ?></a>

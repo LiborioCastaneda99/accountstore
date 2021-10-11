@@ -51,17 +51,42 @@ $nombre_carpeta = "no_principal";
 
                 <!-- servicios -->
                 <h3 class="text-center">Administrador</h3>
-                <div class="row mt-3 col-md-3 mx-auto">
-                    <div class="col-md-12">
+                <div class="row mt-3 col-md-8 mx-auto">
+                    <div class="col-md-6">
                         <div class="card mb-6 shadow-sm">
-                            <img class="bd-placeholder-img card-img-top" src="img/logo_user.png"  width="100%" alt="">
+                            <img class="bd-placeholder-img card-img-top" src="img/user_Plus.png"  width="100%" alt="">
                             <div class="card-body"><hr>
-                            <p class="card-text text-center">Administrar clientes</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group mx-auto">
-                                    <a class="btn btn-sm btn-block btn-outline-primary"  href="clientes.php">Ir</a>
+                                <p class="card-text text-center">Administrar clientes</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group mx-auto">
+                                        <a class="btn btn-sm btn-block btn-outline-primary"  href="clientes.php">Ir</a>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="card-footer text-muted text-center">
+                                <?php 
+                                    $contarP = mysqli_query($conexion, "SELECT count(id) As contar FROM clientes where estado = 1");
+                                    echo "Hay ".mysqli_fetch_row($contarP)[0]. " clientes activos.";
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-6 shadow-sm">
+                            <img class="bd-placeholder-img card-img-top" src="img/userCheck.png"  width="100%" alt="">
+                            <div class="card-body"><hr>
+                                <p class="card-text text-center">Clientes por verificar</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group mx-auto">
+                                        <a class="btn btn-sm btn-block btn-outline-primary"  href="clientes_verificar.php">Consultar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-muted text-center">
+                                <?php 
+                                    $contarP = mysqli_query($conexion, "SELECT count(cuenta_enviada) As contar FROM clientes_nuevos where cuenta_enviada = 0 AND rechazado = 0");
+                                    echo "Por verificar hay ".mysqli_fetch_row($contarP)[0]. " clientes.";
+                                ?>
                             </div>
                         </div>
                     </div>

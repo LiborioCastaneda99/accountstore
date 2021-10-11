@@ -220,16 +220,35 @@
 			return mysqli_query($conexion,$sql);
 		}
 
-		public function actualizarPerfil($datos){
+		public function actualizarPago($datos){
 			$obj= new conectar();
 			$conexion=$obj->conexion();
 			$tildes = $conexion->query("SET NAMES 'utf8'");
 			
-			/*$sql="UPDATE cursos SET curso ='$datos[1]',jornada='$datos[2]', horario='$datos[5]',intensidad='$datos[6]',
-			fecha_inicio='$datos[7]',municipio='$datos[8]',direccion='$datos[9]',formacion='$datos[10]',centro='$datos[4]',
-			descripcion='$datos[12]',nombre_grupo='$datos[3]',estado='$datos[11]' WHERE id='$datos[0]'";*/
+			//Se actualiza
+			$sql="UPDATE clientes_nuevos SET cuenta_enviada = '1' WHERE id='$datos[0]'";
+			mysqli_query($conexion,$sql);
 
-			return json_encode($datos);
+			//Se consulta 
+			$sql_consulta = "SELECT nombre, correo, telefono, servicio, perfiles FROM clientes_nuevos WHERE id = '$datos[0]'";
+			$res = mysqli_fetch_row(mysqli_query($conexion,$sql_consulta));
+
+			//Guardar en cliente
+			$sql_guardar_cliente="INSERT INTO clientes (nombres, correo, telefono, servicio, pantalla) 
+			VALUES ('$res[0]','$res[1]','$res[2]','$res[3]','$res[4]')";
+			return mysqli_query($conexion,$sql_guardar_cliente);
+			
+		}
+
+		public function actualizarPagoRechazado($datos){
+			$obj= new conectar();
+			$conexion=$obj->conexion();
+			$tildes = $conexion->query("SET NAMES 'utf8'");
+			
+			$sql="UPDATE clientes_nuevos SET rechazado = '1' WHERE id='$datos[0]'";
+
+			return mysqli_query($conexion,$sql);
+			
 		}
 
 		public function eliminar($id){
